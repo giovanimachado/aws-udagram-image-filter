@@ -2,6 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
+import validUrl from "valid-url";
+// https://www.npmjs.com/package/valid-url
+
 (async () => {
 
   // Init the Express application
@@ -31,7 +34,27 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   //! END @TODO1
   
-  // Root Endpoint
+  app.get("/filteredimage", async (req, res) => {
+    const imageUrl = req.query.image_url;
+    
+    if (!validUrl.isUri(imageUrl)) {
+      console.log(validUrl.isHttpUri(imageUrl));
+      return res.status(400).send({message: 'Image URL is invalid or not informed'});
+    }
+
+    const image = await filterImageFromURL(imageUrl);
+    
+    res.status(200).sendFile(image, {}, async (err) => {
+          if (err) {
+            throw new Error('The file transfer was intruppted due to a server error'); 
+          }
+
+          await deleteLocalFiles([image]);
+      });
+
+  });
+
+    // Root Endpoint
   // Displays a simple message to the user
   app.get( "/", async ( req, res ) => {
     res.send("try GET /filteredimage?image_url={{}}")
