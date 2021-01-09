@@ -6,7 +6,7 @@ The project is split into three parts:
 1. [The Simple Frontend](http://udagram-front-end.s3-website.us-east-2.amazonaws.com/)
 A basic Ionic client web application which consumes the RestAPI Backend. [Covered in the course]
 2. [The RestAPI Backend](https://github.com/giovanimachado/aws-udagram-restapi), a Node-Express server which can be deployed to a cloud service. [Covered in the course]
-3. [The Image Filtering Microservice](https://github.com/udacity/cloud-developer/tree/master/course-02/project/image-filter-starter-code), the final project for the course. It is a Node-Express application which runs a simple script to process images. [Your assignment](http://udagram-image-filter-giovani-dev-dev.us-east-2.elasticbeanstalk.com/filteredimage?image_url=https://static.bhphotovideo.com/explora/sites/default/files/ts-space-sun-and-solar-viewing-facts-versus-fiction.jpg)
+3. [The Image Filtering Microservice](https://github.com/udacity/cloud-developer/tree/master/course-02/project/image-filter-starter-code), the final project for the course. It is a Node-Express application which runs a simple script to process images. [Test API Request](http://udagram-image-filter-giovani-dev-dev.us-east-2.elasticbeanstalk.com/filteredimage?image_url=https://static.bhphotovideo.com/explora/sites/default/files/ts-space-sun-and-solar-viewing-facts-versus-fiction.jpg)
 
 ## Tasks
 
@@ -31,4 +31,5 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
 Follow the process described in the course to `eb init` a new application and `eb create` a new environment to deploy your image-filter service! Don't forget you can use `eb deploy` to push changes.
 
+A screenshot of the elastic beanstalk application dashboard:
 ![alt text](https://github.com/giovanimachado/aws-udagram-image-filter/blob/main/deployment_screenshots/Giovani_deployment_screenshot.PNG?raw=true)
