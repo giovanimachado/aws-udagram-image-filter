@@ -39,6 +39,7 @@ import validUrl from "valid-url";
     
     if (!validUrl.isUri(imageUrl)) {
       console.log(validUrl.isHttpUri(imageUrl));
+      //Add HTTP error status codes
       return res.status(400).send({message: 'Image URL is invalid or not informed'});
     }
 
