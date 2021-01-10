@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
 import validUrl from "valid-url";
+import Jimp from 'jimp';
 // https://www.npmjs.com/package/valid-url
 
 (async () => {
@@ -34,18 +35,18 @@ import validUrl from "valid-url";
 
   //! END @TODO1
   
-  app.get("/filteredimage", async (req, res) => {
-    const imageUrl = req.query.image_url;
-    
+  app.get("/filteredimage", async (req: Request, res: Response) => {
+    const imageUrl: string = req.query.image_url;
+            
     if (!validUrl.isUri(imageUrl)) {
       console.log(validUrl.isHttpUri(imageUrl));
       //Add HTTP error status codes
       return res.status(400).send({message: 'Image URL is invalid or not informed'});
     }
 
-    const image = await filterImageFromURL(imageUrl);
+    const image: string = await filterImageFromURL(imageUrl);
     
-    res.status(200).sendFile(image, {}, async (err) => {
+    res.status(200).sendFile(image, {}, async (err: any) => {
           if (err) {
             throw new Error('The file transfer was intruppted due to a server error'); 
           }
